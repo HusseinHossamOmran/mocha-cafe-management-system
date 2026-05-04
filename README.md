@@ -25,7 +25,11 @@ A multi-branch cafe management system built using C#, SQL Server, and Windows Fo
 
 ## How to Run
 1. Open `DBapplication.sln` in Visual Studio.
-2. Run `Mocha.sql` to create the database schema.
-3. Run `Mocha_Data.sql` to insert sample data.
-4. Update the database connection string if needed.
+2. Run `SQL/Mocha.sql` to create the database schema.
+3. Run `SQL/Mocha_Data.sql` to insert sample data.
+4. Update the SQL Server connection string in `DBapplication/app.config` if your local SQL Server instance uses a different name.
 5. Run the Windows Forms application.
+
+## Notes
+- The project uses Windows Authentication with SQL Server.
+- If your SQL Server instance is named `SQLEXPRESS`, update the connection string accordingly.
