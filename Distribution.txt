@@ -1,0 +1,114 @@
+Work distribution:
+Sohayla:
+- Auth Screens: Login, Signup, Forget Password 
+- Customer App:
+- Browse Menu (read‑only)
+- View Order History
+- Submit Feedback Form
+- Admin Dashboard (Reports Tab):
+- Customer and Feedback Statistics
+Clara:
+- Admin Dashboard (Setup Tab):
+- Manage Branches (Add/Remove)
+- Manage Menu (Price/Name/Category)
+- Inventory Management Screen (Grid view to set quantity per item per branch) * Manage Employees(Add/Remove) *statistics Employees
+
+User Functionalities:
+
+1-The Admin (Owner/Manager) Can: 
+
+1. Authenticate 
+
+Securely login using username and password 
+
+2. Manage Branches: 
+
+View all café locations with complete details 
+
+Add new branches to expand business 
+
+Update branch information (name, location, phone) 
+
+Delete branches (with order history validation) 
+
+3. Manage Menu Items: 
+
+View entire menu catalog 
+
+Add new products with category and pricing 
+
+Update item names, categories, and prices globally 
+
+Remove discontinued items 
+
+Categorize items (Hot Drink, Cold Drink, Dessert, Pastry, Food) 
+
+4. Manage Inventory: 
+
+View stock levels for any branch 
+
+Set initial stock quantities for new items 
+
+Update quantities branch-by-branch 
+
+Perform bulk inventory updates 
+
+Identify low-stock items requiring reorder 
+
+Track out-of-stock items 
+
+5. Monitor Operations: 
+
+View all employees across branches 
+
+Access comprehensive sales reports 
+
+Analyze performance by branch, category, and product 
+
+Visualize data through charts and graphs
+2-Customers 
+1. Authenticate
+- Securely sign up with name, email, username, and password.
+- Login using username and password.
+- Reset password if forgotten (no profile updates allowed).
+
+2. Browse Menu
+- View the entire café menu catalog.
+- See product details (name, category, price).
+- Categories include: Hot Drink, Cold Drink, Dessert, Pastry, Food.
+- Read‑only browsing (cannot edit or order items).
+
+3. View Past Orders
+- Access personal order history.
+- See details of previous purchases (date, totals, method, status).
+
+4. Loyalty & Rewards
+- View current LoyaltyBalance.
+- Tier classification: Bronze (<500), Silver (500–1000), Gold (>1000).
+- Enjoy tier‑based benefits (discounts, offers).
+
+5. Feedback & Interaction
+- Submit feedback and ratings for products or service.
+- Contribute to overall customer satisfaction analytics.
+
+Hussein:
+Core Backend & Database Architecture:
+Schema Design: Created Orders, OrderDetails tables and defined relationships (Cashier/Barista to Order to Branch).Data Integrity: Implemented the Master Seeding Script (20 tuples) and Nullable Constraints for asynchronous workflows.Business Logic: Developed financial engines (SubTotal/Discount/Total algorithms) and Inventory Triggers (Auto-decrement stock on sale).
+
+
+POS & Workflow GUI:Cashier POS Screen: Cart management and real-time total calculation.Kitchen Display System: Real-time "Active Queue" fetching and Order Status State Machine (Pending to Preparing to Ready to Completed).
+User functionatlities:
+
+- Employees (Cashiers & Baristas)
+1- Process Transactions (POS):
+Select Customers from the database to link loyalty accounts.
+Add items to the live cart with automatic Price and SubTotal calculation.
+Process payments via Cash, Card, or Loyalty Points.
+System Logic: Ensures atomic database writes (Order + OrderDetails save together).
+2- Manage Order WorkflowCashier: 
+Creates orders in a "Pending" state, allowing for delayed assignment.
+Barista: Views the "Active Queue" (Real-time feed of incomplete orders).
+Status Updates: Toggles order states manually from Pending to Preparing to Ready to Completed.
+3- Trigger Inventory Updates:
+Automatically decrease stock counts in the AvailableAt table upon successful checkout.
+Prevent ordering of items that are out-of-stock at the specific branch location.
